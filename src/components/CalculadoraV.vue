@@ -2,7 +2,7 @@
   <!-- Bienvenida a la plataforma -->
   <h1 class="mb-1">Bienvenidos a calculadora hecho con Vue.js</h1>
   <!-- Formulario realizado con el CDN bootstrap -->
-  <div class="container d-flex justify-content-center align-items-center" style="min-height: 50vh;">
+  <div class="container d-flex justify-content-center align-items-center" style="min-height: 100px;">
     <div class="card shadow-sm p-4 w-100" style="max-width: 500px;">
       <div class="form-field text-center" id="formulario">
         <h3 class="mb-4">Cálculo de Notas</h3>
