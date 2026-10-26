@@ -43,7 +43,8 @@
         </div>
         <!-- Revelacion del resultado final de la nota desde las etiquetas script -->
         <div class="dialog-body mb-4">
-          <p class="m-0">Su nota final es: <strong>{{ notaFinal }}</strong></p>
+          <p class="m-0"><strong>Su nota final es: </strong></p>
+          <p class="m-0"> <strong>{{ notaFinal }}</strong></p>
         </div>
         <div class="dialog-footer text-end">
           <button type="button" class="btn btn-secondary" commandfor="invokerDialog" command="close">Cerrar</button>
@@ -62,22 +63,8 @@ function calcular() {
   let nota2 = Number(document.getElementById("nota2").value)
   let nota3 = Number(document.getElementById("nota3").value)
   let notaPF = Number(document.getElementById("notaPF").value)
-  const alertaExistente = document.getElementById('alerta-error');
-  if (alertaExistente) {
-    alertaExistente.remove();
-  }
   if (nota1 < 0 || nota1 > 10 || nota2 < 0 || nota2 > 10 || nota3 < 0 || nota3 > 10 || notaPF < 0 || notaPF > 10) {
-    const alerta = document.createElement('div');
-    alerta.id = 'alerta-error';
-    alerta.classList.add('alert', 'alert-danger', 'alert-dismissible', 'fade', 'show', 'mt-3', 'text-start');
-    alerta.setAttribute('role', 'alert');
-    alerta.innerHTML = `
-      <strong>¡Error!</strong> Las notas deben estar en un rango de 0 a 10.
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    `;
-    const formulario = document.getElementById('formulario');
-    formulario.insertBefore(alerta, formulario.children[1]);
-    return 0;
+    return "Error las notas deben estar en un rango de 0 a 10"
   } else {
     let calculoInterno = (nota1 * 0.20) + (nota2 * 0.20) + (nota3 * 0.20) + (notaPF * 0.40)
     return calculoInterno
@@ -89,7 +76,7 @@ export default {
   el dialogo de resultado */
   data() {
     return {
-      notaFinal: 0
+      notaFinal: null
     }
   },
   props: {
@@ -100,7 +87,12 @@ export default {
     se nombrará resultado y se ejecutara cuando se realice un click en el botón "Calcular"
     en el formulario */
     resultado() {
-      this.notaFinal = calcular();
+      if (calcular() == "Error las notas deben estar en un rango de 0 a 10") {
+        this.notaFinal = calcular();
+      }
+      else {
+        this.notaFinal = calcular();
+      }
     }
   }
 }
