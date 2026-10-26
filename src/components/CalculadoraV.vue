@@ -1,8 +1,9 @@
 <template>
   <!-- Bienvenida a la plataforma -->
   <h1 class="mb-1">Bienvenidos a calculadora hecho con Vue.js</h1>
+  <br>
   <!-- Formulario realizado con el CDN bootstrap -->
-  <div class="container d-flex justify-content-center align-items-center" style="min-height: 100px;">
+  <div class="container d-flex justify-content-center align-items-center">
     <div class="card shadow-sm p-4 w-100" style="max-width: 500px;">
       <div class="form-field text-center" id="formulario">
         <h3 class="mb-4">Cálculo de Notas</h3>
@@ -57,12 +58,13 @@
 
 <script>
 /* Funcion calcular que realiza la obtención del valor númerico de las notas y luego 
-realiza el calculo de la nota regresando como "calculoInterno"*/
+realiza el calculo de la nota regresando como "calculoInterno" o si hay valores encima de los limites establecidos retorna "Error las notas deben estar en un rango de 0 a 10"*/
 function calcular() {
   let nota1 = Number(document.getElementById("nota1").value)
   let nota2 = Number(document.getElementById("nota2").value)
   let nota3 = Number(document.getElementById("nota3").value)
   let notaPF = Number(document.getElementById("notaPF").value)
+
   if (nota1 < 0 || nota1 > 10 || nota2 < 0 || nota2 > 10 || nota3 < 0 || nota3 > 10 || notaPF < 0 || notaPF > 10) {
     return "Error las notas deben estar en un rango de 0 a 10"
   } else {
