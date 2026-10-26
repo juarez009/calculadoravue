@@ -9,22 +9,25 @@
         <!-- Entrada de la primera nota sumativa -->
         <div class="mb-3 text-start">
           <label for="nota1" class="form-label">Ingrese su nota sumativa 1</label>
-          <input type="number" class="form-control" name="nota1" id="nota1" placeholder="Ingrese la nota sumativa 1">
+          <input type="number" class="form-control" name="nota1" id="nota1" placeholder="Ingrese la nota sumativa 1"
+            required>
         </div>
         <!-- Entrada de la segunda nota sumativa  -->
         <div class="mb-3 text-start">
           <label for="nota2" class="form-label">Ingrese su nota sumativa 2</label>
-          <input type="number" class="form-control" name="nota2" id="nota2" placeholder="Ingrese la nota sumativa 2">
+          <input type="number" class="form-control" name="nota2" id="nota2" placeholder="Ingrese la nota sumativa 2"
+            required>
         </div>
         <!-- Entrada de la tercera nota sumativa  -->
         <div class="mb-3 text-start">
           <label for="nota3" class="form-label">Ingrese su nota sumativa 3</label>
-          <input type="number" class="form-control" name="nota3" id="nota3" placeholder="Ingrese la nota sumativa 3">
+          <input type="number" class="form-control" name="nota3" id="nota3" placeholder="Ingrese la nota sumativa 3"
+            required>
         </div>
         <!-- Entrada de la nota del proyecto final  -->
         <div class="mb-4 text-start">
           <label for="notaPF" class="form-label">Ingrese su nota del proyecto final</label>
-          <input type="number" class="form-control" name="notaPF" id="notaPF"
+          <input type="number" class="form-control" name="notaPF" id="notaPF" required
             placeholder="Ingrese la nota del proyecto final">
         </div>
         <!-- Boton de calculo que se llama desde las etiquetas script -->
@@ -59,28 +62,45 @@ function calcular() {
   let nota2 = Number(document.getElementById("nota2").value)
   let nota3 = Number(document.getElementById("nota3").value)
   let notaPF = Number(document.getElementById("notaPF").value)
-  let calculoInterno = (nota1 * 0.20) + (nota2 * 0.20) + (nota3 * 0.20) + (notaPF * 0.40)
-  return calculoInterno
-}
-export default {
-  name: 'CalculadoraV',
-  /* Se instancia un data para inicializar la variable notaFinal que luego se mostrará en
-  el dialogo de resultado */
-  data() {
-    return {
-      notaFinal: 0
-    }
-  },
-  props: {
-    msg: String
-  },
-  methods: {
-    /*Se conecta la función calcular con la variable notaFinal a tráves de un metodo que 
-    se nombrará resultado y se ejecutara cuando se realice un click en el botón "Calcular"
-    en el formulario */
-    resultado() {
-      this.notaFinal = calcular();
+  const alertaExistente = document.getElementById('alerta-error');
+  if (alertaExistente) {
+    alertaExistente.remove();
+  }
+  if (nota1 < 0 || nota1 > 10 || nota2 < 0 || nota2 > 10 || nota3 < 0 || nota3 > 10 || notaPF < 0 || notaPF > 10) {
+    const alerta = document.createElement('div');
+    alerta.id = 'alerta-error';
+    alerta.classList.add('alert', 'alert-danger', 'alert-dismissible', 'fade', 'show', 'mt-3', 'text-start');
+    alerta.setAttribute('role', 'alert');
+    alerta.innerHTML = `
+      <strong>¡Error!</strong> Las notas deben estar en un rango de 0 a 10.
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    `;
+    const formulario = document.getElementById('formulario');
+    formulario.insertBefore(alerta, formulario.children[1]);
+    return 0;
+  } else {
+    let calculoInterno = (nota1 * 0.20) + (nota2 * 0.20) + (nota3 * 0.20) + (notaPF * 0.40)
+    return calculoInterno
+  }
+  export default {
+    name: 'CalculadoraV',
+    /* Se instancia un data para inicializar la variable notaFinal que luego se mostrará en
+    el dialogo de resultado */
+    data() {
+      return {
+        notaFinal: 0
+      }
+    },
+    props: {
+      msg: String
+    },
+    methods: {
+      /*Se conecta la función calcular con la variable notaFinal a tráves de un metodo que 
+      se nombrará resultado y se ejecutara cuando se realice un click en el botón "Calcular"
+      en el formulario */
+      resultado() {
+        this.notaFinal = calcular();
+      }
     }
   }
-}
 </script>
