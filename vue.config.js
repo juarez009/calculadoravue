@@ -3,5 +3,6 @@ module.exports = defineConfig({
   publicPath: process.env.NODE_ENV === 'production'
     ? '/calculadoravue/' // repo name
     : '/',
-  transpileDependencies: true
+  transpileDependencies: true,
+  parallel: false
 })
