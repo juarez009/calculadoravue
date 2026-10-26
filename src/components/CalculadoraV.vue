@@ -69,7 +69,7 @@ function calcular() {
     return "Error las notas deben estar en un rango de 0 a 10"
   } else {
     let calculoInterno = (nota1 * 0.20) + (nota2 * 0.20) + (nota3 * 0.20) + (notaPF * 0.40)
-    return calculoInterno
+    return calculoInterno.toFixed(2)
   }
 }
 export default {
