@@ -82,25 +82,26 @@ function calcular() {
     let calculoInterno = (nota1 * 0.20) + (nota2 * 0.20) + (nota3 * 0.20) + (notaPF * 0.40)
     return calculoInterno
   }
-  export default {
-    name: 'CalculadoraV',
-    /* Se instancia un data para inicializar la variable notaFinal que luego se mostrará en
-    el dialogo de resultado */
-    data() {
-      return {
-        notaFinal: 0
-      }
-    },
-    props: {
-      msg: String
-    },
-    methods: {
-      /*Se conecta la función calcular con la variable notaFinal a tráves de un metodo que 
-      se nombrará resultado y se ejecutara cuando se realice un click en el botón "Calcular"
-      en el formulario */
-      resultado() {
-        this.notaFinal = calcular();
-      }
+}
+export default {
+  name: 'CalculadoraV',
+  /* Se instancia un data para inicializar la variable notaFinal que luego se mostrará en
+  el dialogo de resultado */
+  data() {
+    return {
+      notaFinal: 0
+    }
+  },
+  props: {
+    msg: String
+  },
+  methods: {
+    /*Se conecta la función calcular con la variable notaFinal a tráves de un metodo que 
+    se nombrará resultado y se ejecutara cuando se realice un click en el botón "Calcular"
+    en el formulario */
+    resultado() {
+      this.notaFinal = calcular();
     }
   }
+}
 </script>
